@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<style>
+		.body {
+			background-color: #202023;
+			color: #ddd;
+			overflow-y: scroll;
+			width: 100%;
+			min-width: 300px;
+		}
+
+		.container {
+			display: block;
+			position: relative;
+			padding-left: 35px;
+			margin-bottom: 12px;
+			cursor: pointer;
+			font-size: 22px;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		.container input {
+			position: absolute;
+			opacity: 0;
+			cursor: pointer;
+			height: 0;
+			width: 0;
+		}
+
+		.checkmark {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 25px;
+			width: 25px;
+			background-color: #505050;
+		}
+
+		.container:hover input~.checkmark {
+			background-color: #808080;
+		}
+
+		.container input:checked~.checkmark {
+			background-color: #fed300;
+		}
+
+		.checkmark:after {
+			content: "";
+			position: absolute;
+			display: none;
+		}
+
+		.container input:checked~.checkmark:after {
+			display: block;
+		}
+
+		.container .checkmark:after {
+			left: 9px;
+			top: 5px;
+			width: 5px;
+			height: 10px;
+			border: solid black;
+			border-width: 0 3px 3px 0;
+			-webkit-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+
+		.form-save-button {
+			color: black;
+			background: #fed300;
+			border-color: #fed300;
+			height: 50px;
+			width: 100px;
+			font: bold 15px arial, sans-serif;
+			text-align: center;
+			text-shadow: none;
+		}
+
+		.form-save-button:hover {
+			background-color: #e7c413;
+			border-color: #e7c413;
+		}
+
+		.form-reset-button {
+			color: black;
+			background: #adadad;
+			border-color: #adadad;
+			height: 50px;
+			width: 100px;
+			font: bold 15px arial, sans-serif;
+			text-align: center;
+			text-shadow: none;
+		}
+
+		.form-reset-button:hover {
+			background-color: #979797;
+			border-color: #979797;
+		}
+
+	</style>
+</head>
+
+<body class="body">
+	<div style="margin: 10px;">
+		<form>
+			<label class="container">Show Lemons
+				<input type="checkbox" id="showChestLemons">
+				<span class="checkmark"></span>
+			</label>
+			<label class="container">Log deleted messages
+				<input type="checkbox" id="logDeletedMessages">
+				<span class="checkmark"></span>
+			</label>
+			<label class="container">Log chest value updates
+				<input type="checkbox" id="logChestValueUpdates">
+				<span class="checkmark"></span>
+			</label>
+			<label class="container">Log all chat messages
+				<input type="checkbox" id="logAllChatMessages">
+				<span class="checkmark"></span>
+			</label>
+			<label class="container">Log chat followers
+				<input type="checkbox" id="logChatFollows">
+				<span class="checkmark"></span>
+			</label>
+			<label class="container">Auto Claim Chest
+				<input type="checkbox" id="autoClaimChest">
+				<span class="checkmark"></span>
+			</label>
+			<label class="container">Auto Claim Gifted Sub
+				<input type="checkbox" id="autoClaimGiftedSub">
+				<span class="checkmark"></span>
+			</label>
+			<button type="submit" class="form-save-button">Save</button>
+			<button type="button" class="form-reset-button" id="reset">Reset</button>
+		</form>
+	</div>
+
+	<script src="options.js"></script>
+
+</body>
+
+</html>

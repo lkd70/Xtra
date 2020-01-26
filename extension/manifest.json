@@ -1,0 +1,36 @@
+{
+
+	"manifest_version": 2,
+	"name": "Dlive Xtra",
+	"version": "1.0.0",
+	"author": "LKD70",
+	"description": "Adding a little Xtra!",
+	"icons": {
+		"48": "icons/dlive-48.png"
+	},
+ 	"browser_action": {
+ 		"browser_style": true,
+ 		"default_title": "DLive Xtra",
+ 		"default_popup": "options.html"
+ 	},
+	"content_scripts": [{
+		"matches": ["*://*.dlive.tv/*"],
+		"js": ["bot.js"]
+	}],
+	"options_ui": {
+		"page": "options.html"
+	},
+	"permissions": [
+		"storage",
+		"activeTab",
+		"tabs",
+		"webRequest",
+		"https://graphigo.prd.dlive.tv/",
+		"*://graphigo.prd.dlive.tv/*"
+	],
+	"applications": {
+		"gecko": {
+			"id": "dlive@lkd70.io"
+		}
+	}
+}
