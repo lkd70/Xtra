@@ -27,6 +27,7 @@ const request = (data, noAuth = false) => new Promise((resolve, reject) => {
 
 const getDisplayName = () => {
 	const matches = window.location.href.match(/^https:\/\/dlive\.tv\/(?:c\/|)([a-z_A-Z-0-9]+)$/);
+	if (matches === null) return undefined;
 	if (matches.length === 2 && !(matches[1] in ['s', 'c'])) return matches[1];
 	return undefined;
 };
@@ -131,10 +132,12 @@ const onLoad = async () => {
 				const chest = document.getElementById('chestvalue');
 				if (!chest) {
 					const chestParent = document.querySelector('.info-line-wrap > div:nth-child(2)');
-					const chestValue = document.createElement('p');
-					chestValue.innerHTML = '<center>LOADING LEMONS (This might take a while...)</center>';
-					chestValue.id = 'chestvalue';
-					chestParent.appendChild(chestValue);
+					if (chestParent) {
+						const chestValue = document.createElement('p');
+						chestValue.innerHTML = '<center>LOADING LEMONS (This might take a while...)</center>';
+						chestValue.id = 'chestvalue';
+						chestParent.appendChild(chestValue);
+					}
 				}
 			}
 
