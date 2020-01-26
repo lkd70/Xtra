@@ -116,7 +116,8 @@ const claimGiftedSub = streamer => new Promise((resolve, reject) => {
 });
 
 const onLoad = async () => {
-	browser.storage.sync.get().then(async settings => {
+	const b = (typeof browser === 'undefined') ? chrome : browser;
+	b.storage.sync.get(null, async settings => {
 		console.clear();
 		const displayname = getDisplayName();
 		if (typeof displayname === 'undefined') {
@@ -197,7 +198,7 @@ const onLoad = async () => {
 			};
 			/* #endregion */
 		}
-	}, error);
+	});
 
 };
 
