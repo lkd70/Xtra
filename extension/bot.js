@@ -10,6 +10,7 @@ const log = message => console.log(`%c[XTRA] - %c${message}`, 'color: #ff0066', 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const request = (data, noAuth = false) => new Promise((resolve, reject) => {
+	const d = (typeof data === 'object') ? JSON.stringify(data) : data;
 	const xhr = new XMLHttpRequest();
 	xhr.open('POST', 'https://graphigo.prd.dlive.tv/', true);
 	xhr.setRequestHeader('Content-Type', 'application/json');
@@ -21,7 +22,7 @@ const request = (data, noAuth = false) => new Promise((resolve, reject) => {
 	}
 	xhr.onload = () => resolve(JSON.parse(xhr.responseText).data);
 	xhr.onerror = error => reject(error);
-	xhr.send(data);
+	xhr.send(d);
 });
 
 const getDisplayName = () => {
