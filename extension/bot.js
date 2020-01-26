@@ -9,12 +9,12 @@ const log = message => console.log(`%c[XTRA] - %c${message}`, 'color: #ff0066', 
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const request = (data, noAuth = false) => new Promise((resolve, reject) => {
+const request = (data, auth = true) => new Promise((resolve, reject) => {
 	const d = (typeof data === 'object') ? JSON.stringify(data) : data;
 	const xhr = new XMLHttpRequest();
 	xhr.open('POST', 'https://graphigo.prd.dlive.tv/', true);
 	xhr.setRequestHeader('Content-Type', 'application/json');
-	if (noAuth) {
+	if (auth) {
 		xhr.setRequestHeader(
 			'authorization',
 			JSON.parse(window.localStorage.getItem('store')).accessToken.token
@@ -191,10 +191,12 @@ const onLoad = async () => {
 							} else {
 								console.log('chest dont exist, adding');
 								const chestParent = document.querySelector('.info-line-wrap > div:nth-child(2)');
-								const chestValue = document.createElement('p');
-								chestValue.innerHTML = '<center>' + msg.value / 100000 + '</center>';
-								chestValue.id = 'chestvalue';
-								chestParent.appendChild(chestValue);
+								if (chestParent) {
+									const chestValue = document.createElement('p');
+									chestValue.innerHTML = '<center>' + msg.value / 100000 + '</center>';
+									chestValue.id = 'chestvalue';
+									chestParent.appendChild(chestValue);
+								}
 							}
 						}
 					}
